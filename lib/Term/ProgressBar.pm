@@ -29,6 +29,11 @@ method update(Int $step) {
 }
 
 method message(Str $s) {
+	self!clear;
+	say $s;
+}
+
+method !clear {
 	print ' ' x $!as.chars;
-	say "\r", $s;
+	print "\r";
 }
