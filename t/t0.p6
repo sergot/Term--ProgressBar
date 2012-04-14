@@ -1,18 +1,15 @@
 use v6;
 use Test;
-plan 1;
+plan 2;
 
 use Term::ProgressBar;
+use IO::Capture::Simple;
 
-my $bar = Term::ProgressBar.new(count => 100, :p);
-my $r = ' ';
+my $bar = Term::ProgressBar.new(count => 100);
+my $r;
 
-$*OUT = class {
-	method print(*@args) {
-		$r ~= @args.join;
-	}
-}
+$r = capture_stdout { $bar.update(50) }
+ok($r ~~ m/'[''='+' '+']'/);
 
-$bar.update(100);
-
-is $r, /100\%/;
+$r = capture_stdout { $bar.update(100) }
+ok($r ~~ m/'[''='+']'/);
