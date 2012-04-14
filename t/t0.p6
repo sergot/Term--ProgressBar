@@ -13,4 +13,8 @@ $*OUT = class {
 	}
 }
 
+for 1..100 {
+	$bar.update($_);
+}
+
 is $r, /100\%/;
