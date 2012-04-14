@@ -3,24 +3,23 @@ class Term::ProgressBar;
 
 has Int $.count = 100;
 has Str $.name = " ";
+has Int $.width = 100;
 
 has Bool $.p;
+has Bool $.t; # TODO: time
 
-# optional
-has $.blocka = '[';
+has $.blocka = '['; # TODO: better names?
 has $.blockb = ']';
 has $.style = '=';
 
-has Int $.width = 100;
-
-has Str $!as;
+has Str $!as; # current string
 
 method update(Int $step) {
 	my $multi = ($step/($.count/$.width)).floor;
 	my $ext = ' ';
-	if  $.p {
-		$ext ~= $multi*(100/$.width).round(0.1)~"%";
-	}
+
+	$ext ~= $multi*(100/$.width).round(0.1)~"%" if $.p;
+
 	if $step % ($.count/$.width).floor == 0 {
 		$!as = "$.name "~$.blocka~($.style x $multi)~(' ' x ($.width - $multi))~$.blockb~" $ext";
 		print $!as, "\r";
@@ -34,6 +33,5 @@ method message(Str $s) {
 }
 
 method !clear {
-	print ' ' x $!as.chars;
-	print "\r";
+	print ' ' x $!as.chars, "\r";
 }
