@@ -4,7 +4,7 @@ plan 1;
 
 use Term::ProgressBar;
 
-my $bar = Term::ProgressBar.new(count => 100);
+my $bar = Term::ProgressBar.new(count => 100, :p);
 my $r = ' ';
 
 $*OUT = class {
@@ -13,8 +13,6 @@ $*OUT = class {
 	}
 }
 
-for 1..100 {
-	$bar.update($_);
-}
+$bar.update(100);
 
 is $r, /100\%/;
