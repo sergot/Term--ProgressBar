@@ -8,8 +8,8 @@ has Int $.width = 100;
 has Bool $.p;
 has Bool $.t; # TODO: time
 
-has $.blocka = '['; # TODO: better names?
-has $.blockb = ']';
+has $.left = '['; # TODO: better names?
+has $.right = ']';
 has $.style = '=';
 
 has Str $!as; # current string
@@ -21,7 +21,7 @@ method update(Int $step) {
 	$ext ~= $multi*(100/$.width).round(0.1)~"%" if $.p;
 
 	if $step % ($.count/$.width).floor == 0 {
-		$!as = "$.name "~$.blocka~($.style x $multi)~(' ' x ($.width - $multi))~$.blockb~" $ext";
+		$!as = "$.name "~$.left~($.style x $multi)~(' ' x ($.width - $multi))~$.right~" $ext";
 		print $!as, "\r";
 	}
 	say if $step == $.count;
