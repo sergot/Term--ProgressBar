@@ -6,13 +6,13 @@ has Str $.name = " ";
 has Int $.width = 100;
 
 has Bool $.p;
-has Bool $.t; # TODO: time
+has Bool $.t;
 
-has $.left = '['; # TODO: better names?
+has $.left = '[';
 has $.right = ']';
 has $.style = '=';
 
-has Str $!as = ""; # current string
+has Str $!as = "";
 
 has $!step = 0.0;
 
@@ -23,7 +23,7 @@ method update(Int $step) {
 	my $ext = ' ';
 
 	$ext ~= $multi*(100/$.width).round(0.1)~"%" if $.p;
-	$ext ~= ' '~ (( $start - $!step ) * ( $.count - $step ) ).floor ~ ' s' ;
+	$ext ~= ' '~ (( $start - $!step ) * ( $.count - $step ) ).floor ~ ' s left' if $.t;
 
 	if $step % ($.count/$.width).floor == 0 {
 		$!as = "$.name "~$.left~($.style x $multi)~(' ' x ($.width - $multi))~$.right~" $ext";
