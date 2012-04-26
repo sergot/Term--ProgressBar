@@ -1,3 +1,5 @@
 Term::ProgressBar for Perl 6
 
 Implementation of Terminal Progess Bar for Perl 6.
+
+Unfortunately it doesn't work with every terminal... (TODO)
