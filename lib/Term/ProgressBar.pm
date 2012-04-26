@@ -23,11 +23,12 @@ method update(Int $step) {
 	my $ext = ' ';
 
 	$ext ~= $multi*(100/$.width).round(0.1)~"%" if $.p;
-	$ext ~= ' '~ (( $start - $!step ) * ( $.count - $step ) ).floor ~ ' s left' if $.t;
+	$ext ~= ' eta '~ (( $start - $!step ) * ( $.count - $step ) ).floor ~ ' s' if $.t;
 
 	if $step % ($.count/$.width).floor == 0 {
+        self!clear;
 		$!as = "$.name "~$.left~($.style x $multi)~(' ' x ($.width - $multi))~$.right~" $ext";
-		print $!as, "\r";
+		print $!as;
 	}
 	say '' if $step == $.count;
 
