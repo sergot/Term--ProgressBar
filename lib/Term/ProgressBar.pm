@@ -26,9 +26,9 @@ method update(Int $step) {
     $ext ~= ' eta '~ (( $start - $!step ) * ( $.count - $step ) ).floor ~ ' s' if $.t;
 
     if $step % ($.count/$.width).floor == 0 {
-        self!clear;
         $!as = "$.name "~$.left~($.style x $multi)~(' ' x ($.width - $multi))~$.right~" $ext";
         print $!as;
+        self!clear;
     }
     say '' if $step == $.count;
 
