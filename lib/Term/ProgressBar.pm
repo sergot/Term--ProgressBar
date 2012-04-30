@@ -17,29 +17,29 @@ has Str $!as = "";
 has $!step = 0.0;
 
 method update(Int $step) {
-	my $start = nqp::p6box_n(pir::time__n());
+    my $start = nqp::p6box_n(pir::time__n());
 
-	my $multi = ($step/($.count/$.width)).floor;
-	my $ext = ' ';
+    my $multi = ($step/($.count/$.width)).floor;
+    my $ext = ' ';
 
-	$ext ~= $multi*(100/$.width).round(0.1)~"%" if $.p;
-	$ext ~= ' eta '~ (( $start - $!step ) * ( $.count - $step ) ).floor ~ ' s' if $.t;
+    $ext ~= $multi*(100/$.width).round(0.1)~"%" if $.p;
+    $ext ~= ' eta '~ (( $start - $!step ) * ( $.count - $step ) ).floor ~ ' s' if $.t;
 
-	if $step % ($.count/$.width).floor == 0 {
+    if $step % ($.count/$.width).floor == 0 {
         self!clear;
-		$!as = "$.name "~$.left~($.style x $multi)~(' ' x ($.width - $multi))~$.right~" $ext";
-		print $!as;
-	}
-	say '' if $step == $.count;
+        $!as = "$.name "~$.left~($.style x $multi)~(' ' x ($.width - $multi))~$.right~" $ext";
+        print $!as;
+    }
+    say '' if $step == $.count;
 
-	$!step = $start;
+    $!step = $start;
 }
 
 method message(Str $s) {
-	self!clear;
-	say $s;
+    self!clear;
+    say $s;
 }
 
 method !clear {
-	print ' ' x $!as.chars, "\r";
+    print ' ' x $!as.chars, "\r";
 }
