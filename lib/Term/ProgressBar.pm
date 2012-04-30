@@ -41,5 +41,6 @@ method message(Str $s) {
 }
 
 method !clear {
-    print ' ' x $!as.chars, "\r";
+    print "\r";
+    print ' ' x $!as.chars;
 }
