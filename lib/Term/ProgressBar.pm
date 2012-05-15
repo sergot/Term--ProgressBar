@@ -22,25 +22,25 @@ method update(Int $step) {
     my $multi = ($step/($.count/$.width)).floor;
     my $ext = ' ';
 
-    $ext ~= $multi*(100/$.width).round(0.1)~"%" if $.p;
-    $ext ~= ' eta '~ (( $start - $!step ) * ( $.count - $step ) ).floor ~ ' s' if $.t;
+    $ext ~= $multi*(100/$.width).round(0.1)~"% " if $.p;
+    $ext ~= 'eta '~ (( $start - $!step ) * ( $.count - $step ) ).floor ~ ' s' if $.t && $step > 1;
 
-    if $step % ($.count/$.width).floor == 0 {
-        $!as = "$.name "~$.left~($.style x $multi)~(' ' x ($.width - $multi))~$.right~" $ext";
-        print $!as;
-        self!clear;
-    }
+    $!as = "$.name "~$.left~($.style x $multi)~(' ' x ($.width - $multi))~$.right~" $ext";
+
+    self!clear;
+    print $!as;
     say '' if $step == $.count;
 
     $!step = $start;
 }
 
-method message(Str $s) {
+method message($s) {
     self!clear;
     say $s;
 }
 
 method !clear {
     print "\r";
-    print ' ' x $!as.chars;
+    print ' ' x $!as.chars+1;
+    print "\r";
 }
