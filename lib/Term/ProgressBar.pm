@@ -17,7 +17,7 @@ has Str $!as = "";
 has $!step = 0.0;
 
 method update(Int $step) {
-    my $start = nqp::p6box_n(pir::time__n());
+    my $start = nqp::p6box_n(pir::time__N());
 
     my $multi = ($step/($.count/$.width)).floor;
     my $ext = ' ';
