@@ -1,4 +1,5 @@
 use v6;
+use nqp;
 class Term::ProgressBar;
 
 has Int $.count = 100;
