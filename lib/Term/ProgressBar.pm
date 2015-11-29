@@ -1,4 +1,5 @@
 use v6;
+
 unit class Term::ProgressBar;
 
 has Int $.count = 100;
@@ -17,7 +18,11 @@ has Str $!as = "";
 has $!step = 0.0;
 
 method update(Int $step) {
-    my $start = nqp::time_n();
+    # This is a bit gross but the other alternative is to use nqp::time_n
+    # which leads to warnings. It'd be nice if the DateTime core provided
+    # something to get this value directly (posix-hi-res?).
+    my $now = DateTime,now;
+    my $start = $now.posix + ($now.second - $now.whole-second);
 
     my $multi = ($step/($.count/$.width)).floor;
     my $ext = ' ';
