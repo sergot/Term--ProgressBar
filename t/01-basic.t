@@ -33,10 +33,10 @@ subtest {
     my $r;
 
     $r = capture_stdout { $bar.update(50) }
-    like($r, rx/ '[' '='+ ' '+ ']  eta ' <[ 0..9 \. ]>+ ' s' /, 'update(50)');
+    like($r, rx/ '[' '='+ ' '+ ']  eta ' <[ 0..9 \. ]>+ 's' /, 'update(50)');
 
     $r = capture_stdout { $bar.update(100) }
-    like($r, rx/ '[' '='+ ']  eta 0 s' /, 'update(100)');
+    like($r, rx/ '[' '='+ ']  eta 0s' /, 'update(100)');
 }, 'with eta at end';
 
 done-testing;

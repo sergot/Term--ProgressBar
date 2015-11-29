@@ -28,7 +28,7 @@ method update(Int $step) {
     my $ext = ' ';
 
     $ext ~= $multi*(100/$.width).round(0.1)~"% " if $.p;
-    $ext ~= 'eta '~ (( $start - $!step ) * ( $.count - $step ) ).floor ~ ' s' if $.t && $step > 1;
+    $ext ~= 'eta '~ (( $start - $!step ) * ( $.count - $step ) ).floor ~ 's' if $.t && $step > 1;
 
     $!as = "$.name "~$.left~($.style x $multi)~(' ' x ($.width - $multi))~$.right~" $ext";
 
