@@ -3,15 +3,15 @@ use v6;
 unit class Term::ProgressBar;
 
 has Int $.count = 100;
-has Str $.name = " ";
+has Cool:D $.name = " ";
 has Int $.width = 100;
 
 has Bool $.p;
 has Bool $.t;
 
-has $.left = '[';
-has $.right = ']';
-has $.style = '=';
+has Cool:D $.left = '[';
+has Cool:D $.right = ']';
+has Cool:D $.style = '=';
 
 has Str $!as = "";
 
