@@ -21,7 +21,7 @@ method update(Int $step) {
     # This is a bit gross but the other alternative is to use nqp::time_n
     # which leads to warnings. It'd be nice if the DateTime core provided
     # something to get this value directly (posix-hi-res?).
-    my $now = DateTime,now;
+    my $now = DateTime.now;
     my $start = $now.posix + ($now.second - $now.whole-second);
 
     my $multi = ($step/($.count/$.width)).floor;
